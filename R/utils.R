@@ -43,8 +43,9 @@ tiddler_json2 <- function(tiddler) {
                 field_i <- ifelse(!grepl(" ", field_i), field_i, paste0("[[", field_i, "]]"))
                 field_i <- paste(field_i, collapse = " ")
             }
-            tiddler$fields[[f_names[i]]] <- jsonlite::unbox(as.character(field_i))
+            tiddler[[f_names[i]]] <- jsonlite::unbox(as.character(field_i))
         }
+        tiddler$fields <- NULL
     }
     for (i in seq(along = tiddler)) {
         if (names(tiddler)[i] != "fields") {
